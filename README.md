@@ -1,24 +1,38 @@
 # README
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+You are creating an API for your new music streaming service
 
-Things you may want to cover:
+Create API endpoints that enable the following:
 
-* Ruby version
+#### Albums
+- creating and deleting albums
+- changing album details (name, artist, album art)
+- adding / removing songs
 
-* System dependencies
+#### Artists (musicians/bands)
+- creating and deleting artists
+- changing artist details (name, bio, albums)
 
-* Configuration
+#### Songs
+- creating and deleting songs
+- changing song details (name, duration, genre, album, artist, etc)
+- songs can be featured and featured songs have a here image and extra texts to describe or promote it
 
-* Database creation
+#### Playlists
+- creating and deleting playlists
+- changing playlist name
+- adding / removing songs from playlist
 
-* Database initialization
+The API should be written in Ruby: Rails and/or an API framework such as Grape
 
-* How to run the test suite
+The information should be stored in a database of your choice
 
-* Services (job queues, cache servers, search engines, etc.)
+Document the API so a developer can understand how to use it
 
-* Deployment instructions
+Explain the architectural and design decisions you make
 
-* ...
+Publish the code on GitHub & deploy the API so we can take a look at it
+
+I would like you to use your creativity to make this application as practical and realistic as possible
+
+Use your creativity!
