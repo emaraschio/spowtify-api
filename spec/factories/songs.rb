@@ -1,7 +1,7 @@
 FactoryGirl.define do
   factory :song do
     name { Faker::Music.instrument }
-    duration { Faker::Number.number }
+    duration { Faker::Time.between(DateTime.now - 1, DateTime.now) }
     genre { 'rock' }
     artist_id nil
     album_id nil
