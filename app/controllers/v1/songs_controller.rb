@@ -34,7 +34,8 @@ module V1
     private
 
     def song_params
-      params.permit(:name, :duration, :abstract, :album_id, :genre)
+      params.permit(:name, :duration, :abstract, :album_id, :genre, 
+                    :description, :image_url, :featured)
     end
 
     def set_artist

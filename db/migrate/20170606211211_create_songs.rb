@@ -5,6 +5,9 @@ class CreateSongs < ActiveRecord::Migration[5.1]
       t.time :duration
       t.references :album, foreign_key: true
       t.references :artist, foreign_key: true
+      t.boolean :featured, default: false
+      t.string :description
+      t.string :image_url
       t.string :genre
 
       t.timestamps

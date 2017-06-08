@@ -50,6 +50,9 @@ ActiveRecord::Schema.define(version: 20170607170245) do
     t.time "duration"
     t.integer "album_id"
     t.integer "artist_id"
+    t.boolean "featured", default: false
+    t.string "description"
+    t.string "image_url"
     t.string "genre"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
