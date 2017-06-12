@@ -5,5 +5,6 @@ FactoryGirl.define do
     genre { 'rock' }
     artist_id nil
     album_id nil
+    user_id nil
   end
 end

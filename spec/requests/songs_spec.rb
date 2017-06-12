@@ -2,15 +2,18 @@ require 'rails_helper'
 
 RSpec.describe 'Songs API' do
 
-  let!(:artist) { create(:artist) }
+  let(:user) { create(:user) }
+  let(:user_id) { user.id }
+  let!(:artist) { create(:artist, user_id: user_id) }
   let!(:album) { create(:album, artist_id: artist.id) }
   let!(:songs) { create_list(:song, 5, artist_id: artist.id, album_id: album.id) }
   let(:artist_id) { artist.id }
   let(:album_id) { album.id }
   let(:id) { songs.first.id }
+  let(:headers) { valid_headers }
 
   describe 'GET /artists/:artist_id/songs' do
-    before { get "/artists/#{artist_id}/songs" }
+    before { get "/artists/#{artist_id}/songs", headers: headers }
 
     context 'when artist exists' do
       it 'returns status code 200' do
@@ -36,7 +39,7 @@ RSpec.describe 'Songs API' do
   end
 
   describe 'GET /artists/:artist_id/songs/:id' do
-    before { get "/artists/#{artist_id}/songs/#{id}" }
+    before { get "/artists/#{artist_id}/songs/#{id}", headers: headers }
 
     context 'when artist song exists' do
       it 'returns status code 200' do
@@ -62,10 +65,10 @@ RSpec.describe 'Songs API' do
   end
 
   describe 'POST /artists/:artist_id/songs' do
-    let(:valid_attributes) { { name: 'In bloom', duration: '2', genre: 'Garage Rock', album_id: album_id } }
+    let(:valid_attributes) { { name: 'In bloom', duration: '2', genre: 'Garage Rock', album_id: album_id }.to_json }
 
     context 'when request attributes are valid' do
-      before { post "/artists/#{artist_id}/songs", params: valid_attributes }
+      before { post "/artists/#{artist_id}/songs", params: valid_attributes, headers: headers }
 
       it 'returns status code 201' do
         expect(response).to have_http_status(201)
@@ -73,7 +76,7 @@ RSpec.describe 'Songs API' do
     end
 
     context 'when an invalid request' do
-      before { post "/artists/#{artist_id}/songs", params: {} }
+      before { post "/artists/#{artist_id}/songs", params: {}, headers: headers }
 
       it 'returns status code 422' do
         expect(response).to have_http_status(422)
@@ -86,9 +89,9 @@ RSpec.describe 'Songs API' do
   end
 
   describe 'PUT /artists/:artist_id/songs/:id' do
-    let(:valid_attributes) { { name: 'Polly' } }
+    let(:valid_attributes) { { name: 'Polly' }.to_json }
 
-    before { put "/artists/#{artist_id}/songs/#{id}", params: valid_attributes }
+    before { put "/artists/#{artist_id}/songs/#{id}", params: valid_attributes, headers: headers }
 
     context 'when song exists' do
       it 'returns status code 204' do
@@ -115,7 +118,7 @@ RSpec.describe 'Songs API' do
   end
 
   describe 'DELETE /artists/:id' do
-    before { delete "/artists/#{artist_id}/songs/#{id}" }
+    before { delete "/artists/#{artist_id}/songs/#{id}", headers: headers }
 
     it 'returns status code 204' do
       expect(response).to have_http_status(204)

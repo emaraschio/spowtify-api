@@ -2,13 +2,16 @@ require 'rails_helper'
 
 RSpec.describe 'Albums API' do
 
-  let!(:artist) { create(:artist) }
+  let(:user) { create(:user) }
+  let(:user_id) { user.id }
+  let!(:artist) { create(:artist, user_id: user_id) }
   let!(:albums) { create_list(:album, 5, artist_id: artist.id) }
   let(:artist_id) { artist.id }
   let(:id) { albums.first.id }
+  let(:headers) { valid_headers }
 
   describe 'GET /artists/:artist_id/albums' do
-    before { get "/artists/#{artist_id}/albums" }
+    before { get "/artists/#{artist_id}/albums", headers: headers }
 
     context 'when artist exists' do
       it 'returns status code 200' do
@@ -34,7 +37,7 @@ RSpec.describe 'Albums API' do
   end
 
   describe 'GET /artists/:artist_id/albums/:id' do
-    before { get "/artists/#{artist_id}/albums/#{id}" }
+    before { get "/artists/#{artist_id}/albums/#{id}", headers: headers }
 
     context 'when artist album exists' do
       it 'returns status code 200' do
@@ -60,10 +63,10 @@ RSpec.describe 'Albums API' do
   end
 
   describe 'POST /artists/:artist_id/albums' do
-    let(:valid_attributes) { { name: 'Nevermind', art: 'A legendary', abstract: 'Best of the best' } }
+    let(:valid_attributes) { { name: 'Nevermind', art: 'A legendary', abstract: 'Best of the best', user_id: user_id }.to_json }
 
     context 'when request attributes are valid' do
-      before { post "/artists/#{artist_id}/albums", params: valid_attributes }
+      before { post "/artists/#{artist_id}/albums", headers: headers, params: valid_attributes }
 
       it 'returns status code 201' do
         expect(response).to have_http_status(201)
@@ -71,7 +74,7 @@ RSpec.describe 'Albums API' do
     end
 
     context 'when an invalid request' do
-      before { post "/artists/#{artist_id}/albums", params: {} }
+      before { post "/artists/#{artist_id}/albums", headers: headers, params: {} }
 
       it 'returns status code 422' do
         expect(response).to have_http_status(422)
@@ -84,9 +87,9 @@ RSpec.describe 'Albums API' do
   end
 
   describe 'PUT /artists/:artist_id/albums/:id' do
-    let(:valid_attributes) { { name: 'Bleach' } }
+    let(:valid_attributes) { { name: 'Bleach' }.to_json }
 
-    before { put "/artists/#{artist_id}/albums/#{id}", params: valid_attributes }
+    before { put "/artists/#{artist_id}/albums/#{id}", params: valid_attributes, headers: headers }
 
     context 'when album exists' do
       it 'returns status code 204' do
@@ -94,9 +97,9 @@ RSpec.describe 'Albums API' do
       end
 
       it 'updates the album' do
-        updated_album = Album.find(id)
-        expect(updated_album.name).to match(/Bleach/)
+        expect(response.body).to be_empty
       end
+
     end
 
     context 'when the album does not exist' do
@@ -113,7 +116,7 @@ RSpec.describe 'Albums API' do
   end
 
   describe 'DELETE /artists/:id' do
-    before { delete "/artists/#{artist_id}/albums/#{id}" }
+    before { delete "/artists/#{artist_id}/albums/#{id}", headers: headers }
 
     it 'returns status code 204' do
       expect(response).to have_http_status(204)

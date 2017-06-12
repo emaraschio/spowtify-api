@@ -2,11 +2,14 @@ require 'rails_helper'
 
 RSpec.describe 'Artists API', type: :request do
 
-  let!(:artists) { create_list(:artist, 10) }
+  let(:user) { create(:user) }
+  let(:user_id) { user.id }
+  let!(:artists) { create_list(:artist, 10, user_id: user_id) }
   let(:artist_id) { artists.first.id }
+  let(:headers) { valid_headers }
 
   describe 'GET /artists' do
-    before { get '/artists' }
+    before { get '/artists', headers: headers }
 
     it 'returns artists' do
       expect(json).not_to be_empty
@@ -19,7 +22,7 @@ RSpec.describe 'Artists API', type: :request do
   end
 
   describe 'GET /artists/:id' do
-    before { get "/artists/#{artist_id}" }
+    before { get "/artists/#{artist_id}", headers: headers }
 
     context 'when the record exists' do
       it 'returns the artist' do
@@ -46,10 +49,10 @@ RSpec.describe 'Artists API', type: :request do
   end
 
   describe 'POST /artists' do
-    let(:valid_attributes) { { name: 'Pink Floyd', bio: 'The best band of the world', genre_type: 'band' } }
+    let(:valid_attributes) { { name: 'Pink Floyd', bio: 'The best band of the world', genre_type: 'band', user_id: user_id }.to_json }
 
     context 'when request is valid' do
-      before { post '/artists', params: valid_attributes }
+      before { post '/artists', params: valid_attributes, headers: headers }
 
       it 'creates an artist' do
         expect(json['name']).to eq('Pink Floyd')
@@ -65,7 +68,7 @@ RSpec.describe 'Artists API', type: :request do
     let(:valid_attributes) { { name: 'Nirvana' }.to_json }
 
     context 'when the record exists' do
-      before { put "/artists/#{artist_id}", params: valid_attributes }
+      before { put "/artists/#{artist_id}", params: valid_attributes, headers: headers }
 
       it 'updates the record' do
         expect(response.body).to be_empty
@@ -78,7 +81,7 @@ RSpec.describe 'Artists API', type: :request do
   end
 
   describe 'DELETE /artists/:id' do
-    before { delete "/artists/#{artist_id}" }
+    before { delete "/artists/#{artist_id}", headers: headers }
 
     it 'returns status code 204' do
       expect(response).to have_http_status(204)

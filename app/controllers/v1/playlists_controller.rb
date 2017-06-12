@@ -4,13 +4,13 @@ module V1
 
     # GET /playlists
     def index
-      @playlists = Playlist.all
+      @playlists = current_user.playlists
       json_response(@playlists)
     end
 
     # POST /playlists
     def create
-      @playlist = Playlist.create!(playlist_params)
+      @playlist = current_user.playlists.create!(playlist_params)
       json_response(@playlist, :created)
     end
 

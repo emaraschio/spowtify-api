@@ -4,13 +4,13 @@ module V1
 
     # GET /artists
     def index
-      @artists = Artist.all
+      @artists = current_user.artists.all
       json_response(@artists)
     end
 
     # POST /artists
     def create
-      @artist = Artist.create!(artist_params)
+      @artist = current_user.artists.create!(artist_params)
       json_response(@artist, :created)
     end
 
