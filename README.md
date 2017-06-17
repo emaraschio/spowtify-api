@@ -1,5 +1,26 @@
 # README
 
+# HOW TO
+
+## How to build the project
+```
+bundle install
+rails db:migrate
+rails s
+```
+
+## How to run the tests
+```
+bundle exec rspec
+```
+
+## How to run migrations
+```
+rails db:migrate
+```
+
+# Abstract
+
 You are creating an API for your new music streaming service
 
 Create API endpoints that enable the following:
