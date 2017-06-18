@@ -1,0 +1,198 @@
+{
+  "apiVersion": "1.0",
+  "swaggerVersion": "1.2",
+  "basePath": "http://localhost:3000",
+  "resourcePath": "artists",
+  "apis": [
+    {
+      "path": "/artists",
+      "operations": [
+        {
+          "summary": "Get all artists",
+          "responseMessages": [
+            {
+              "code": 200,
+              "responseModel": null,
+              "message": "Ok"
+            }
+          ],
+          "nickname": "V1::Artists#index",
+          "method": "get"
+        }
+      ]
+    },
+    {
+      "path": "/artists",
+      "operations": [
+        {
+          "summary": "create an artist",
+          "parameters": [
+            {
+              "paramType": "form",
+              "name": "name",
+              "type": "string",
+              "description": "Name",
+              "required": true
+            },
+            {
+              "paramType": "form",
+              "name": "genre_type",
+              "type": "string",
+              "description": "Genre Type",
+              "required": true
+            },
+            {
+              "paramType": "form",
+              "name": "bio",
+              "type": "string",
+              "description": "Bio",
+              "required": true
+            }
+          ],
+          "responseMessages": [
+            {
+              "code": 200,
+              "responseModel": null,
+              "message": "Ok"
+            },
+            {
+              "code": 422,
+              "responseModel": null,
+              "message": "Unprocessable Entity"
+            }
+          ],
+          "notes": "Make sure you pass parameters in artists' hash:",
+          "nickname": "V1::Artists#create",
+          "method": "post"
+        }
+      ]
+    },
+    {
+      "path": "/artists/{id}",
+      "operations": [
+        {
+          "summary": "Get an artist",
+          "parameters": [
+            {
+              "paramType": "path",
+              "name": "id",
+              "type": "integer",
+              "description": "ID of an Artist",
+              "required": true
+            }
+          ],
+          "responseMessages": [
+            {
+              "code": 200,
+              "responseModel": null,
+              "message": "Ok"
+            },
+            {
+              "code": 404,
+              "responseModel": null,
+              "message": "Not Found"
+            }
+          ],
+          "nickname": "V1::Artists#show",
+          "method": "get"
+        }
+      ]
+    },
+    {
+      "path": "/artists/{id}",
+      "operations": [
+        {
+          "summary": "update artist",
+          "parameters": [
+            {
+              "paramType": "path",
+              "name": "id",
+              "type": "integer",
+              "description": "ID of an Artist",
+              "required": true
+            },
+            {
+              "paramType": "form",
+              "name": "name",
+              "type": "string",
+              "description": "Name",
+              "required": true
+            },
+            {
+              "paramType": "form",
+              "name": "genre_type",
+              "type": "string",
+              "description": "Genre Type",
+              "required": true
+            },
+            {
+              "paramType": "form",
+              "name": "bio",
+              "type": "string",
+              "description": "Bio",
+              "required": true
+            }
+          ],
+          "responseMessages": [
+            {
+              "code": 200,
+              "responseModel": null,
+              "message": "Ok"
+            },
+            {
+              "code": 404,
+              "responseModel": null,
+              "message": "Not Found"
+            },
+            {
+              "code": 422,
+              "responseModel": null,
+              "message": "Unprocessable Entity"
+            }
+          ],
+          "notes": "Make sure you pass parameters in artists' hash:",
+          "nickname": "V1::Artists#update",
+          "method": "patch"
+        }
+      ]
+    },
+    {
+      "path": "/artists/{id}",
+      "operations": [
+        {
+          "summary": "Delete an artist",
+          "parameters": [
+            {
+              "paramType": "path",
+              "name": "id",
+              "type": "integer",
+              "description": "ID of an Artist",
+              "required": true
+            }
+          ],
+          "responseMessages": [
+            {
+              "code": 200,
+              "responseModel": null,
+              "message": "Ok"
+            },
+            {
+              "code": 404,
+              "responseModel": null,
+              "message": "Not Found"
+            },
+            {
+              "code": 422,
+              "responseModel": null,
+              "message": "Unprocessable Entity"
+            }
+          ],
+          "notes": "Delete an artist by passing his id",
+          "nickname": "V1::Artists#destroy",
+          "method": "delete"
+        }
+      ]
+    }
+  ],
+  "authorizations": null
+}

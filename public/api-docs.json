@@ -4,6 +4,26 @@
   "basePath": "http://localhost:3000",
   "apis": [
     {
+      "path": "/v1/albums.{format}",
+      "description": "Albums Management"
+    },
+    {
+      "path": "/v1/songs.{format}",
+      "description": "Songs Management"
+    },
+    {
+      "path": "/v1/artists.{format}",
+      "description": "Artists Management"
+    },
+    {
+      "path": "/v1/playlists.{format}",
+      "description": "Playlists Management"
+    },
+    {
+      "path": "/v1/playlist_songs.{format}",
+      "description": "Playlist's Songs Management"
+    },
+    {
       "path": "/users.{format}",
       "description": "Users Sign Up"
     }
