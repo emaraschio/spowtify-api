@@ -4,6 +4,5 @@ FactoryGirl.define do
     art { Faker::Lorem.sentence }
     abstract { Faker::Hipster.sentence }
     artist_id nil
-    user_id nil
   end
 end

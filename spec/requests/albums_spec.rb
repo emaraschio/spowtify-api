@@ -2,12 +2,11 @@ require 'rails_helper'
 
 RSpec.describe 'Albums API' do
 
-  let(:user) { create(:user) }
-  let(:user_id) { user.id }
-  let!(:artist) { create(:artist, user_id: user_id) }
+  let!(:artist) { create(:artist) }
   let!(:albums) { create_list(:album, 5, artist_id: artist.id) }
   let(:artist_id) { artist.id }
   let(:id) { albums.first.id }
+  let(:user) { create(:user) }
   let(:headers) { valid_headers }
 
   describe 'GET /artists/:artist_id/albums' do
@@ -63,7 +62,7 @@ RSpec.describe 'Albums API' do
   end
 
   describe 'POST /artists/:artist_id/albums' do
-    let(:valid_attributes) { { name: 'Nevermind', art: 'A legendary', abstract: 'Best of the best', user_id: user_id }.to_json }
+    let(:valid_attributes) { { name: 'Nevermind', art: 'A legendary', abstract: 'Best of the best' }.to_json }
 
     context 'when request attributes are valid' do
       before { post "/artists/#{artist_id}/albums", headers: headers, params: valid_attributes }

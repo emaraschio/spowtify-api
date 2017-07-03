@@ -2,14 +2,13 @@ require 'rails_helper'
 
 RSpec.describe 'Songs API' do
 
-  let(:user) { create(:user) }
-  let(:user_id) { user.id }
-  let!(:artist) { create(:artist, user_id: user_id) }
+  let!(:artist) { create(:artist) }
   let!(:album) { create(:album, artist_id: artist.id) }
   let!(:songs) { create_list(:song, 5, artist_id: artist.id, album_id: album.id) }
   let(:artist_id) { artist.id }
   let(:album_id) { album.id }
   let(:id) { songs.first.id }
+  let(:user) { create(:user) }
   let(:headers) { valid_headers }
 
   describe 'GET /artists/:artist_id/songs' do
