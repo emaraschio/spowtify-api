@@ -1,12 +1,12 @@
 # README
 
-
 ## HOW TOs
 
 ### How to build the project
 ```
 bundle install
-rails db:migrate
+rails db:migrate RAILS_ENV=development
+rails db:migrate RAILS_ENV=test
 rails s
 ```
 
@@ -20,9 +20,15 @@ http://localhost:3000/index.html
 bundle exec rspec
 ```
 
+### How to run a single test
+```
+bundle exec rspec path/to/spec.rb
+```
+
 ### How to run migrations
 ```
-rails db:migrate
+rails db:migrate RAILS_ENV=development
+rails db:migrate RAILS_ENV=test
 ```
 
 ### How to generate documentation after a change
