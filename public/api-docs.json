@@ -8,12 +8,12 @@
       "description": "Albums Management"
     },
     {
-      "path": "/v1/songs.{format}",
-      "description": "Songs Management"
-    },
-    {
       "path": "/v1/artists.{format}",
       "description": "Artists Management"
+    },
+    {
+      "path": "/v1/songs.{format}",
+      "description": "Songs Management"
     },
     {
       "path": "/v1/playlists.{format}",

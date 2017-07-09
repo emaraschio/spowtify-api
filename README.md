@@ -25,6 +25,11 @@ bundle exec rspec
 rails db:migrate
 ```
 
+### How to generate documentation after a change
+```
+bundle exec rake swagger:docs
+```
+
 ## Abstract
 
 You are creating an API for your new music streaming service
