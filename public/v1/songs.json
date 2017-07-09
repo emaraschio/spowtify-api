@@ -8,15 +8,9 @@
       "path": "/artists/{artist_id}/songs",
       "operations": [
         {
-          "summary": "Get all songs from an artist",
+          "summary": "Get all songs from an album",
           "parameters": [
-            {
-              "paramType": "path",
-              "name": "artist_id",
-              "type": "integer",
-              "description": "ID of artist",
-              "required": true
-            }
+
           ],
           "responseMessages": [
             {
@@ -36,13 +30,6 @@
         {
           "summary": "create an song",
           "parameters": [
-            {
-              "paramType": "path",
-              "name": "artist_id",
-              "type": "integer",
-              "description": "ID of an Artist",
-              "required": true
-            },
             {
               "paramType": "form",
               "name": "name",
@@ -91,13 +78,6 @@
           "parameters": [
             {
               "paramType": "path",
-              "name": "artist_id",
-              "type": "integer",
-              "description": "ID of an Artist",
-              "required": true
-            },
-            {
-              "paramType": "path",
               "name": "id",
               "type": "integer",
               "description": "ID of a Song",
@@ -127,13 +107,6 @@
         {
           "summary": "update song",
           "parameters": [
-            {
-              "paramType": "path",
-              "name": "artist_id",
-              "type": "integer",
-              "description": "ID of an Artist",
-              "required": true
-            },
             {
               "paramType": "path",
               "name": "id",
@@ -192,13 +165,6 @@
         {
           "summary": "Delete an song",
           "parameters": [
-            {
-              "paramType": "path",
-              "name": "artist_id",
-              "type": "integer",
-              "description": "ID of an Artist",
-              "required": true
-            },
             {
               "paramType": "path",
               "name": "id",

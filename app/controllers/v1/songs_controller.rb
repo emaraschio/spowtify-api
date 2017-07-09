@@ -1,27 +1,27 @@
 module V1
   class SongsController < ApplicationController
-    before_action :set_artist
+    before_action :set_album
     before_action :set_song, only: [:show, :update, :destroy]
     swagger_controller :users, "Songs Management"
 
     swagger_api :index do |api|
-      summary "Get all songs from an artist"
-      param :path, :artist_id, :integer, :required, "ID of artist"
+      summary "Get all songs from an album"
+      param :path, :album_id, :integer, :required, "ID of Album"
       response :ok
     end
-    # GET /artists/:artist_id/song
+    # GET /albums/:album_id/song
     def index
-      json_response(@artist.songs)
+      json_response(@album.songs)
     end
 
     swagger_api :show do
       summary "Get an song"
-      param :path, :artist_id, :integer, :required, "ID of an Artist"
+      param :path, :album_id, :integer, :required, "ID of an Album"
       param :path, :id, :integer, :required, "ID of a Song"
       response :ok
       response :not_found
     end
-    # GET /artists/:artist_id/songs/:id
+    # GET /albums/:album_id/songs/:id
     def show
       json_response(@song)
     end
@@ -29,28 +29,28 @@ module V1
     swagger_api :create do |api|
       summary "create an song"
       notes "Make sure you pass parameters in songs' hash:"
-      param :path, :artist_id, :integer, :required, "ID of an Artist"
+      param :path, :album_id, :integer, :required, "ID of an Album"
       SongsController::add_common_params(api)
       response :ok
       response :unprocessable_entity
     end
-    # POST /artists/:artist_id/songs
+    # POST /albums/:album_id/songs
     def create
-      @artist.songs.create!(song_params)
-      json_response(@artist, :created)
+      @album.songs.create!(song_params)
+      json_response(@album, :created)
     end
 
     swagger_api :update do |api|
       summary "update song"
       notes "Make sure you pass parameters in songs' hash:"
-      param :path, :artist_id, :integer, :required, "ID of an Artist"
+      param :path, :album_id, :integer, :required, "ID of an Album"
       param :path, :id, :integer, :required, "ID of a Song"
       SongsController::add_common_params(api)
       response :ok
       response :unprocessable_entity
       response :not_found
     end
-    # PUT /artists/:artist_id/songs/:id
+    # PUT /albums/:album_id/songs/:id
     def update
       @song.update(song_params)
       head :no_content
@@ -59,13 +59,13 @@ module V1
     swagger_api :destroy do
       summary "Delete an song"
       notes "Delete an song by passing his id"
-      param :path, :artist_id, :integer, :required, "ID of an Artist"
+      param :path, :album_id, :integer, :required, "ID of an Album"
       param :path, :id, :integer, :required, "ID of a Song"
       response :ok
       response :unprocessable_entity
       response :not_found
     end
-    # DELETE /artists/:artist_id/songs/:id
+    # DELETE /albums/:album_id/songs/:id
     def destroy
       @song.destroy
       head :no_content
@@ -84,12 +84,12 @@ module V1
                     :description, :image_url, :featured)
     end
 
-    def set_artist
-      @artist = Artist.find(params[:artist_id])
+    def set_album
+      @album = Album.find(params[:album_id])
     end
 
     def set_song
-      @song = @artist.songs.find_by!(id: params[:id]) if @artist
+      @song = @album.songs.find_by!(id: params[:id]) if @album
     end
   end
 end
