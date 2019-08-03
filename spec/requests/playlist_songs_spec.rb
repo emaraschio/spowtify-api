@@ -3,12 +3,11 @@ require 'rails_helper'
 RSpec.describe 'Playlist Songs API', type: :request do
 
   let(:user) { create(:user) }
-  let(:user_id) { user.id }
-  let!(:playlists) { create_list(:playlist, 10, user_id: user_id) }
+  let!(:playlists) { create_list(:playlist, 10, user_id: user.id) }
   let(:playlist_id) { playlists.first.id }
-  let!(:artist) { create(:artist, user_id: user_id) }
-  let!(:album) { create(:album, artist_id: artist.id, user_id: user_id) }
-  let!(:songs) { create_list(:song, 5, artist_id: artist.id, album_id: album.id) }
+  let!(:artist) { create(:artist) }
+  let!(:album) { create(:album, artist_id: artist.id) }
+  let!(:songs) { create_list(:song, 5, album_id: album.id) }
   let(:song_id) { songs.first.id }
   let(:song_name) { songs.first.name }
   let!(:playlist_song) { create(:playlist_song, playlist_id: playlist_id, song_id: song_id) }

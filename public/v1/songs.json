@@ -5,16 +5,16 @@
   "resourcePath": "songs",
   "apis": [
     {
-      "path": "/artists/{artist_id}/songs",
+      "path": "/albums/{album_id}/songs",
       "operations": [
         {
-          "summary": "Get all songs from an artist",
+          "summary": "Get all songs from an album",
           "parameters": [
             {
               "paramType": "path",
-              "name": "artist_id",
+              "name": "album_id",
               "type": "integer",
-              "description": "ID of artist",
+              "description": "ID of Album",
               "required": true
             }
           ],
@@ -31,16 +31,16 @@
       ]
     },
     {
-      "path": "/artists/{artist_id}/songs",
+      "path": "/albums/{album_id}/songs",
       "operations": [
         {
           "summary": "create an song",
           "parameters": [
             {
               "paramType": "path",
-              "name": "artist_id",
+              "name": "album_id",
               "type": "integer",
-              "description": "ID of an Artist",
+              "description": "ID of an Album",
               "required": true
             },
             {
@@ -84,16 +84,16 @@
       ]
     },
     {
-      "path": "/artists/{artist_id}/songs/{id}",
+      "path": "/albums/{album_id}/songs/{id}",
       "operations": [
         {
           "summary": "Get an song",
           "parameters": [
             {
               "paramType": "path",
-              "name": "artist_id",
+              "name": "album_id",
               "type": "integer",
-              "description": "ID of an Artist",
+              "description": "ID of an Album",
               "required": true
             },
             {
@@ -122,16 +122,16 @@
       ]
     },
     {
-      "path": "/artists/{artist_id}/songs/{id}",
+      "path": "/albums/{album_id}/songs/{id}",
       "operations": [
         {
           "summary": "update song",
           "parameters": [
             {
               "paramType": "path",
-              "name": "artist_id",
+              "name": "album_id",
               "type": "integer",
-              "description": "ID of an Artist",
+              "description": "ID of an Album",
               "required": true
             },
             {
@@ -187,16 +187,16 @@
       ]
     },
     {
-      "path": "/artists/{artist_id}/songs/{id}",
+      "path": "/albums/{album_id}/songs/{id}",
       "operations": [
         {
           "summary": "Delete an song",
           "parameters": [
             {
               "paramType": "path",
-              "name": "artist_id",
+              "name": "album_id",
               "type": "integer",
-              "description": "ID of an Artist",
+              "description": "ID of an Album",
               "required": true
             },
             {

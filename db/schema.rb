@@ -17,21 +17,17 @@ ActiveRecord::Schema.define(version: 20170607170245) do
     t.string "art"
     t.string "abstract"
     t.integer "artist_id"
-    t.integer "user_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["artist_id"], name: "index_albums_on_artist_id"
-    t.index ["user_id"], name: "index_albums_on_user_id"
   end
 
   create_table "artists", force: :cascade do |t|
     t.string "name"
     t.text "bio"
     t.string "genre_type"
-    t.integer "user_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.index ["user_id"], name: "index_artists_on_user_id"
   end
 
   create_table "playlist_songs", force: :cascade do |t|
@@ -55,8 +51,6 @@ ActiveRecord::Schema.define(version: 20170607170245) do
     t.string "name"
     t.time "duration"
     t.integer "album_id"
-    t.integer "artist_id"
-    t.integer "user_id"
     t.boolean "featured", default: false
     t.string "description"
     t.string "image_url"
@@ -64,8 +58,6 @@ ActiveRecord::Schema.define(version: 20170607170245) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["album_id"], name: "index_songs_on_album_id"
-    t.index ["artist_id"], name: "index_songs_on_artist_id"
-    t.index ["user_id"], name: "index_songs_on_user_id"
   end
 
   create_table "users", force: :cascade do |t|
